@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finanças</title>
+</head>
+<body>
+    <script>
+        salario1 = 800
+        reserva1 = 100
+        fundoImobiliario1 = 50
+        transporte1 = 200
+        lazer1 = 100
+        cartao1 = 80
+        saldo1 = salario1 - reserva1 - fundoImobiliario1 - transporte1 - lazer1 - cartao1
+        console.log('JANEIRO')
+        console.log('SALDO:', saldo1)
+
+        if(saldo1 < 0){
+            saldoComJuros1 = saldo1 * 0.10
+            console.log('Seu juros de janeiro são de:',saldoComJuros1, 'dando um total de:', saldoComJuros1 + saldo1)
+        }else {
+            rendimento1 = saldo1 * 0.005
+            console.log('Seus provendos de janeiro são de:',rendimento1, 'dando um total de:',  rendimento1 + saldo1)
+        }
+
+        salario2 = 800
+        reserva2 = 150
+        fundoImobiliario2 = 100
+        transporte2 = 300
+        lazer2 = 100
+        cartao2 = 250
+        saldo2 = salario2 - reserva2 - fundoImobiliario2 - transporte2 - lazer2 - cartao2
+        console.log('FEVEREIRO')
+        console.log('SALDO:', saldo2)
+
+        if(saldo2 < 0){
+            saldoComJuros2 = saldo2 * 0.10
+            console.log('Seu juros de fevereiro são de:', saldoComJuros2, 'dando um total de:', saldoComJuros2 + saldo2)
+        } else {
+            rendimento2 = saldo2 * 0.005
+            console.log('Seus provendos de fevereiro são de:', rendimento2, 'dando um total de:', rendimento2 + saldo2)
+        }
+
+        console.log('ACUMULO DO ANO')
+        acumuloAno = saldo1 + saldo2
+        console.log(acumuloAno)
+
+    </script>
+</body>
+</html>
