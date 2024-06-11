@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,45 +7,61 @@
 </head>
 <body>
     <script>
+
+        function calcularJuros(valor) {
+            juros = arrendondar(valor * 0.10)
+            return juros
+        }
+
+        function calcularRendimentos(valor) {
+            rendimentos = arrendondar(valor * 0.005)
+            return rendimentos
+        }
+
+        function calcularSaldo(saldoInicial, salario, reserva, fundoImobiliario, transporte, lazer, cartao) {
+            saldo = saldoInicial + salario - reserva - fundoImobiliario - transporte - lazer - cartao
+
+            if(saldo < 0){
+                juro = calcularJuros(saldo)
+                console.log('Seu juros são de:',juros, 'dando um total de:', arrendondar(saldo += juros))
+            }else {
+                rendimentos = calcularRendimentos(saldo)
+                console.log('Seus provendos são de:',rendimentos, 'dando um total de:',  arrendondar(saldo += rendimentos))
+            }
+            return saldo
+        }
+
+        function arrendondar(valor) {
+            return Math.round(valor * 100) / 100
+        }
+
         salario1 = 800
         reserva1 = 100
         fundoImobiliario1 = 50
         transporte1 = 200
         lazer1 = 100
         cartao1 = 80
-        saldo1 = salario1 - reserva1 - fundoImobiliario1 - transporte1 - lazer1 - cartao1
-        console.log('JANEIRO')
-        console.log('SALDO:', saldo1)
-
-        if(saldo1 < 0){
-            saldoComJuros1 = saldo1 * 0.10
-            console.log('Seu juros de janeiro são de:',saldoComJuros1, 'dando um total de:', saldoComJuros1 + saldo1)
-        }else {
-            rendimento1 = saldo1 * 0.005
-            console.log('Seus provendos de janeiro são de:',rendimento1, 'dando um total de:',  rendimento1 + saldo1)
-        }
+        saldo1 = calcularSaldo(0, salario1, reserva1, fundoImobiliario1, transporte1, lazer1, cartao1)
 
         salario2 = 800
         reserva2 = 150
         fundoImobiliario2 = 100
         transporte2 = 300
         lazer2 = 100
-        cartao2 = 250
-        saldo2 = salario2 - reserva2 - fundoImobiliario2 - transporte2 - lazer2 - cartao2
-        console.log('FEVEREIRO')
-        console.log('SALDO:', saldo2)
+        cartao2 = 450
+        saldo2 = calcularSaldo(saldo1, salario2, reserva2, fundoImobiliario2, transporte2, lazer2, cartao2)
 
-        if(saldo2 < 0){
-            saldoComJuros2 = saldo2 * 0.10
-            console.log('Seu juros de fevereiro são de:', saldoComJuros2, 'dando um total de:', saldoComJuros2 + saldo2)
-        } else {
-            rendimento2 = saldo2 * 0.005
-            console.log('Seus provendos de fevereiro são de:', rendimento2, 'dando um total de:', rendimento2 + saldo2)
-        }
+        salario3 = 1000
+        reserva3 = 150
+        fundoImobiliario3 = 100
+        transporte3 = 300
+        lazer3 = 100
+        cartao3 = 250
+        saldo3 = calcularSaldo(saldo2, salario3, reserva3, fundoImobiliario3, transporte3, lazer3, cartao3)
 
         console.log('ACUMULO DO ANO')
-        acumuloAno = saldo1 + saldo2
-        console.log(acumuloAno)
+        acumuloAno = arrendondar(saldo3)
+        console.log('O acumulo do ano foi:', acumuloAno)
 
     </script>
 </body>
