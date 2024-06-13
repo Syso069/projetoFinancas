@@ -18,8 +18,16 @@
             return rendimentos
         }
 
-        function calcularSaldo(saldoInicial, salario, reserva, fundoImobiliario, transporte, lazer, cartao) {
-            saldo = saldoInicial + salario - reserva - fundoImobiliario - transporte - lazer - cartao
+        function calcularSaldo(saldoInicial, lancamentos) {
+            saldo = saldoInicial
+
+            for(lancamento of lancamentos) {
+                if (lancamento.tipo === 'receita') {
+                    saldo += lancamento.valor
+                } else {
+                    saldo -= lancamento.valor
+                }
+            }
 
             if(saldo < 0){
                 juro = calcularJuros(saldo)
@@ -35,29 +43,37 @@
             return Math.round(valor * 100) / 100
         }
 
-        salario1 = 800
-        reserva1 = 100
-        fundoImobiliario1 = 50
-        transporte1 = 200
-        lazer1 = 100
-        cartao1 = 80
-        saldo1 = calcularSaldo(0, salario1, reserva1, fundoImobiliario1, transporte1, lazer1, cartao1)
+        saldoInicial = 0
+        lancamentoJaneiro = [
+        {categoria: 'Salário', tipo: 'receita', valor: 800}, 
+        {categoria: 'Reserva', tipo: 'despesa', valor: 100}, 
+        {categoria: 'FIIs', tipo: 'despesa', valor: 50}, 
+        {categoria: 'Transporte', tipo: 'despesa', valor: 200}, 
+        {categoria: 'Lazer', tipo: 'despesa', valor: 100}, 
+        {categoria: 'Cartão', tipo: 'despesa', valor: 80}
+        ]
+        saldo1 = calcularSaldo(saldoInicial, lancamentoJaneiro)
 
-        salario2 = 800
-        reserva2 = 150
-        fundoImobiliario2 = 100
-        transporte2 = 300
-        lazer2 = 100
-        cartao2 = 450
-        saldo2 = calcularSaldo(saldo1, salario2, reserva2, fundoImobiliario2, transporte2, lazer2, cartao2)
+        lancamentoFevereiro = [
+        {categoria: 'Salário', tipo: 'receita', valor: 800}, 
+        {categoria: 'Reserva', tipo: 'despesa', valor: 150}, 
+        {categoria: 'FIIs', tipo: 'despesa', valor: 100},
+        {categoria: 'Transporte', tipo: 'despesa', valor: 300}, 
+        {categoria: 'Lazer', tipo: 'despesa', valor: 100}, 
+        {categoria: 'Cartão', tipo: 'despesa', valor: 450}
+        ]
+        saldo2 = calcularSaldo(saldo1, lancamentoFevereiro )
 
-        salario3 = 1000
-        reserva3 = 150
-        fundoImobiliario3 = 100
-        transporte3 = 300
-        lazer3 = 100
-        cartao3 = 250
-        saldo3 = calcularSaldo(saldo2, salario3, reserva3, fundoImobiliario3, transporte3, lazer3, cartao3)
+        lancamentoMarco = [
+        {categoria: 'Salário', tipo: 'receita', valor: 1000}, 
+        {categoria: 'Reserva', tipo: 'despesa', valor: 150}, 
+        {categoria: 'FIIs', tipo: 'despesa', valor: 100}, 
+        {categoria: 'Transporte', tipo: 'despesa', valor: 200}, 
+        {categoria: 'Lazer', tipo: 'despesa', valor: 100},
+        {categoria: 'Cartão', tipo: 'despesa', valor: 150},
+        {categoria: 'Nintendo Switch', tipo: 'despesa', valor: 250}
+        ]
+        saldo3 = calcularSaldo(saldo2, lancamentoMarco)
 
         console.log('ACUMULO DO ANO')
         acumuloAno = arrendondar(saldo3)
